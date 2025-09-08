@@ -91,7 +91,7 @@ img { max-width: 100%; display: block; }
   margin: 10px 0;
   color: #fff;
   text-shadow: 0 6px 30px rgba(0,0,0,.35);
-  white-space: nowrap;
+  white-space: nowrap; /* ❌ không cho xuống dòng */
 }
 .date { opacity: .95; }
 .hero-single.ph {
@@ -127,19 +127,31 @@ img { max-width: 100%; display: block; }
 .invitation .names {
   font-family: "Great Vibes", cursive;
   font-size: clamp(36px,7vw,58px);
-  line-height: 1.4;        /* khoảng cách giữa 2 dòng */
-  letter-spacing: 2px;     /* 👈 thêm khoảng cách giữa chữ cái */
+  line-height: 1.4;
+  letter-spacing: 2px;
   margin: 0 0 32px;
 }
 
-.invitation .invite-row {
+/* Bố cục Nhà trai - Nhà gái */
+.invite-row {
   display: flex;
-  gap: 32px;
   justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
   flex-wrap: wrap;
-  margin-top: 24px;
 }
-.invite-side { text-align: center; }
+.invite-side {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1 1 45%;
+  max-width: 480px;
+}
+.invite-side.groom { flex-direction: row; }         /* nhà trai */
+.invite-side.bride { flex-direction: row-reverse; } /* nhà gái */
+.invite-side img.avatar-large { flex-shrink: 0; }
+.invite-details { text-align: left; }
 .avatar-large {
   width: 240px;
   height: 320px;
@@ -147,7 +159,7 @@ img { max-width: 100%; display: block; }
   border-radius: 14px;
   margin-bottom: 12px;
 }
-.invite-details { margin-top: 24px; }
+.invite-details { margin-top: 0; }
 
 /* ===========================
    📅 NGÀY CƯỚI + ĐẾM NGƯỢC
@@ -282,15 +294,26 @@ dialog img { max-width: 90vw; max-height: 80vh; margin: 0 auto 12px; display: bl
   .avatar-large { width: 180px; height: 240px; }
   .couple { font-size: 44px; }
   .map-box iframe { height: 220px; }
+
+  .invite-row { flex-direction: column; gap: 24px; }
+  .invite-side {
+    flex-direction: row !important;
+    justify-content: center;
+    text-align: left;
+    gap: 12px;
+    max-width: 100%;
+  }
+  .invite-details h3 { font-size: 16px; margin: 4px 0; }
+  .invite-details p { font-size: 13px; margin: 2px 0; }
 }
 @media (max-width: 480px) {
   .section { padding: 36px 0; }
   .save-date { font-size: 28px; }
-  .couple { font-size: 32px; white-space: normal; }
+  .couple { font-size: 32px; white-space: nowrap; }
   .date { font-size: 14px; }
   .hero-single.ph { width: 92%; margin-top: 12px; }
   .invitation .names { font-size: 28px; margin-bottom: 16px; }
-  .avatar-large { width: 140px; height: 180px; }
+  .avatar-large { width: 140px; height: 200px; }
   .invite-row { flex-direction: column; gap: 16px; }
   .countdown { gap: 10px; }
   .countdown .num { font-size: 18px; }
@@ -347,7 +370,7 @@ dialog img { max-width: 90vw; max-height: 80vh; margin: 0 auto 12px; display: bl
   position: fixed;
   right: 16px;
   bottom: 16px;
-  z-index: 9999; /* Luôn trên cùng */
+  z-index: 9999;
 }
 .fab-main {
   width: 56px;
@@ -385,37 +408,3 @@ dialog img { max-width: 90vw; max-height: 80vh; margin: 0 auto 12px; display: bl
   font-size: 14px;
   white-space: nowrap;
 }
-/* ===========================
-   📱 FLOATING MENU MOBILE
-=========================== */
-@media (max-width: 768px) {
-  .avatar-large { 
-    width: 140px; 
-    height: 200px; 
-  }
-
-  /* ❌ bỏ flex-direction: column để luôn hiển thị ngang */
-  .invite-row { 
-    flex-direction: row;     /* luôn ngang */
-    flex-wrap: nowrap;       /* không xuống dòng */
-    justify-content: center; 
-    gap: 12px;               /* khoảng cách vừa phải */
-  }
-
-  /* căn giữa text nhỏ hơn */
-  .invite-side h3 { font-size: 16px; }
-  .invite-side p { font-size: 13px; }
-}
-.invite-note,
-.invite-thanks {
-  font-family: "Playfair Display", serif;
-  font-size: 16px;
-  margin: 6px 0;
-  color: #fff;
-}
-
-.invite-note span {
-  font-weight: 600;
-  color: var(--gold);
-}
-

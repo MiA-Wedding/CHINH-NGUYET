@@ -86,7 +86,7 @@ img { max-width: 100%; display: block; }
 .couple {
   font-family: "Playfair Display", serif;
   font-weight: 400;
-  font-size: clamp(42px,10vw,68px);
+  font-size: clamp(35px,8vw,48px);
   line-height: 1.1;
   margin: 10px 0;
   color: #fff;
